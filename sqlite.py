@@ -44,15 +44,3 @@ def selectAuthor(author):
     print((cur.execute("SELECT * FROM ARTICLE WHERE AUTHOR LIKE '{0}%'".format(author)).fetchall()))
     con.close()
     return
-
-
-# Создаем таблицу
-CreateTable()
-# Заполняем таблицы
-file = open(r"D:\work\python\biblio.bib", 'r', encoding='utf-8').read().replace(' and ', ',').split('\n@')
-for article in file:
-    dictAttr = pars.parsAttributes(article)
-    if article.startswith("Article"):
-        insertTable(dictAttr)
-# Выполняем запрос
-selectAuthor('Arantxa',)
