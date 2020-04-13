@@ -41,6 +41,9 @@ def selectAuthor(author):
     """
     con = sqlite3.connect("Test.db")
     cur = con.cursor()
-    print((cur.execute("SELECT * FROM ARTICLE WHERE AUTHOR LIKE '{0}%'".format(author)).fetchall()))
+    
+    AuthList = [(author)]
+    cur.executemany("SELECT * FROM ARTICLE WHERE AUTHOR LIKE '?%'", AuthList)
+    print(cur.fetchall())
     con.close()
     return
